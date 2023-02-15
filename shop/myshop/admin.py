@@ -1,12 +1,16 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 
 from .models import Category, Product
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -21,3 +25,7 @@ class ProductAdmin(admin.ModelAdmin):
         return "None"
 
     image_show.__name__ = "Фото товару"
+
+
+
+
