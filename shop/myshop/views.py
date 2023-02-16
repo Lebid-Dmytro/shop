@@ -1,7 +1,6 @@
-from django.contrib.auth import login
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views import View
-from django.views.generic import CreateView
+from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
+
 
 from cart.forms import CartAddProductForm
 
@@ -12,7 +11,14 @@ from .models import Category, Product
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        products = Product.objects.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
+    else:
+        products = Product.objects.all()
+
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)

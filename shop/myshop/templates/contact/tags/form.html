@@ -1,0 +1,9 @@
+<div class="col-md-5 offset-md-1 mb-3">
+    <h5>Підпишіться на наші сповіщення:</h5>
+    <form action="{% url 'contact' %}" method="post" class="w3layouts-newsletter">
+        {% csrf_token %}
+        {{ contact_form }}
+        <button class="btn1 btn"><span class="fa fa-paper-plane-o" aria-hidden="true"
+                                       style="color: MediumSeaGreen">Відпривати</span></button>
+    </form>
+</div>
