@@ -5,18 +5,94 @@
 {% endblock %}
 {% block content %}
 <div class="product-detail">
-<img src="{% if product.image %}{{ product.image.url }}{% else %}
-{% static "img/no_image.png" %}{% endif %}">
-<h1>{{ product.name }}</h1>
-<h2>
-<a href="{{ product.category.get_absolute_url }}">{{product.category }}</a>
-</h2>
-<p class="price">₴ {{ product.price }}</p>
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}
+    {% static 'img/no_image.png' %}{% endif %}">
+
+    <h1>{{ product.name }}</h1>
+    <h2>
+        <a href="{{ product.category.get_absolute_url }}">{{product.category }}</a>
+    </h2>
+    <p class="price">₴ {{ product.price }}</p>
     <form action="{% url 'cart:cart_add' product.id %}" method="post">
         {{ cart_product_form }}
         {% csrf_token %}
         <input type="submit" value="В кошик">
     </form>
-{{ product.description|linebreaks }}
+    {{ product.description|linebreaks }}
 </div>
+<div>
+    <h3>Залишити відгук</h3>
+    <div>
+
+        <form action="{% url 'myshop:add_comments' product.id %}" method="POST" id="formReview" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="parent" id="contactparent" value="">
+            <div>
+                <label for="contactcomment">Ваш коментар</label>
+                <!--                <input type="text" name="text">-->
+                <textarea name="text" id="contactcomment" cols="30" rows="10"></textarea>
+
+            </div>
+            <div>
+                <label for="contactusername">Ваше ім'я*</label>
+                <input type="text" name="name" id="contactusername">
+            </div>
+            <div>
+                <label for="contactemail">Ваше Email*</label>
+                <input type="email" name="email" id="contactemail">
+            </div>
+            <div>
+                <label for="contacimage">Завантажте ваше фото</label>
+                <input type="file" name="photo_comments" id="contacimage">
+            </div>
+            <div>
+                <label for="contacfile">Завантажте ваш файл</label>
+                <input type="file" name="file_comments" id="contacfile">
+            </div>
+            <div>
+                <button type="submit" value="Submit">Відправити</button>
+                <!--                <input type="submit" value="Submit">-->
+
+            </div>
+
+        </form>
+
+        <div>
+            {% for comment in product.get_comment %}
+            <div>
+
+                <h2><img src="{% static 'images/123.png' %}" class="img-fluid" alt="image"> {{ comment.name }}</h2><h5
+                    class="sub-comments-h5">
+                {{ comment.created }}</h5>
+                <p>Коментар: {{ comment.text }}</p>
+
+
+                <a href="#formReview"
+                   onclick="addReview('{{ comment.name }}', '{{ comment.id }}', '{{ comment.parent }}')">Відповісти</a>
+
+                <div class="sub-comments">
+
+                    {% for com in comment.comments_set.all %}
+                    <h2 class="sub-comments-h2"><img src="{% static 'img/123.png' %}" class="img-fluid" alt="image">
+                        {{ com.name }}</h2><h5 class="sub-comments-h5">{{ com.created }}</h5>
+                    <p>Коментар: {{ com.text }}</p>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+        function addReview(name, id) {
+            document.getElementById("contactparent").value = id;
+            document.getElementById("contactcomment").innerText = `${name}, `
+        }
+</script>
 {% endblock %}

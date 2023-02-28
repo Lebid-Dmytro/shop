@@ -117,9 +117,24 @@ ul.errorlist {
 
 
 #header {
+    background: withe;
+    color: #444;
+    padding: 10px 100px;
+    overflow: auto;
+    text-align: center;
+    display: inline-flex!important;
+
+}
+
+.contact_form{
+    padding: 50px 100px 30px 100px;
+    float: left;
+
+
+}
+
+.company-cls{
     padding:10px 100px;
-    font-size:18px;
-    overflow:auto;
 }
 
 #subheader {
@@ -129,12 +144,55 @@ ul.errorlist {
     overflow:auto;
 }
 
+.button-login {
+    margin-left: 50px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 12px 28px;
+    height: 50px;
+
+}
+
+.search-form{
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    float: right;
+    margin-top: 15px;
+
+
+}
+
+
+.welcome-csl {
+    font-family: 'Ubuntu', sans-serif;
+    float: left;
+    color: #333;
+    font-size: 18px;
+    margin-left: 50px;
+    float: right;
+    height: 50px;
+}
+
+
 #header .logo {
     font-family: 'Ubuntu', sans-serif;
     float:left;
     color:#333;
     font-size:22px;
-    margin-right:10%;
+    margin-right: 1000px;
+
 }
 
 #subheader .cart {
@@ -190,6 +248,7 @@ ul.errorlist {
     float:left;
     text-align:center;
     line-height:1.2;
+    position: relative;
 }
 
 .product-list .item img {
@@ -328,4 +387,5 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+
 

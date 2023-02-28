@@ -1,4 +1,5 @@
-<div class="col-md-5 offset-md-1 mb-3">
+{% load static %}
+<div class="contact_form">
     <h5>Підпишіться на наші сповіщення:</h5>
     <form action="{% url 'contact' %}" method="post" class="w3layouts-newsletter">
         {% csrf_token %}

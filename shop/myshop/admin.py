@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Category, Product
+from .models import Category, Product, Comments
 
 
 @admin.register(Category)
@@ -25,5 +25,7 @@ class ProductAdmin(admin.ModelAdmin):
     image_show.__name__ = "Фото товару"
 
 
-
+@admin.register(Comments)
+class CommentsAdmin(admin.ModelAdmin):
+    pass
 
