@@ -24,7 +24,7 @@
     {% with product=item.product %}
     <tr>
         <td>
-            <a href="{{ product.get_absolute_url }}">
+            <a href="{{ product_detail.id }}">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
             </a>
         </td>
@@ -47,7 +47,7 @@
     {% endwith %}
     {% endfor %}
     <tr class="total">
-        <td>Всего</td>
+        <td>Всього</td>
         <td colspan="4"></td>
         <td class="num">₴ {{ cart.get_total_price }}</td>
     </tr>

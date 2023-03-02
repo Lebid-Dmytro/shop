@@ -45,8 +45,6 @@ class Product(models.Model):
     def __str__(self):
         return  self.name
 
-    def get_absolute_url(self):
-        return reverse('myshop:product_detail', args=[self.id, self.slug])
 
     def get_comment(self):
         return self.comments_set.filter(parent__isnull=True)
@@ -57,7 +55,7 @@ class Comments(models.Model):
     name = models.CharField(max_length=100)
     text = models.TextField(max_length=5000)
     parent = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True)
-    photo = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     photo_comments = models.ImageField(blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'gif'])])
     file_comments = models.FileField(blank=True)

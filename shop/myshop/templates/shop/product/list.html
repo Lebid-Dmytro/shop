@@ -21,7 +21,7 @@
     <h1>{% if category %}{{ category.name }}{% else %}Товари{% endif %}</h1>
     {% for product in products %}
     <div class="item">
-        <a href="{{ product.get_absolute_url }}">
+        <a href="/detail/{{ product.id }}">
             <img height="500"
                  src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
         </a>
